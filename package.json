@@ -1,0 +1,21 @@
+{
+  "name": "discovery-search-orion",
+  "version": "1.0.0",
+  "description": "Discovery search Orion",
+  "author": "Maria Borbones <borgarmar@gmail.com>",
+  "main": "app.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBM/node-hello-world-minimal.git"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "ibm-watson": "^6.2.1"
+  }
+}
