@@ -3,7 +3,7 @@
 const express = require('express')
 const app = express();
 const http = require("https");
-const config = require('./config/config.js');
+
 
 
 
@@ -24,7 +24,6 @@ app.post('/discovery_aeat', (req, res) => {
   var projectId = "";
   var respuesta ="";
 
-  console.log("**ORIGEN:"+config.API_KEY);
 
 
 
@@ -37,16 +36,16 @@ app.post('/discovery_aeat', (req, res) => {
   const discovery = new DiscoveryV2({
     version: '2020-08-30',
     authenticator: new IamAuthenticator({
-      apikey: config.API_KEY,
+      apikey: process.env.API_KEY,
     }),
-    serviceUrl: config.SERVICE_URL,
+    serviceUrl: process.env.SERVICE_URL,
   });
 
   if (origen == 'informador') {
-    projectId = config.INFORMADOR;
+    projectId = process.env.INFORMADOR;
 
   } else {
-    projectId = config.WEB;
+    projectId = process.env.WEB;
   }
 
   const params = {
@@ -66,11 +65,11 @@ app.post('/discovery_aeat', (req, res) => {
         respuesta = respuesta_web(response.result);
       }
       console.log(JSON.stringify(respuesta));
-      res.end(JSON.stringify(respuesta));
+      res.json(respuesta);
     })
     .catch(err => {
       console.log('error:', err);
-      res.end('error');
+      res.json({'error':'error'});
     });
 
 
